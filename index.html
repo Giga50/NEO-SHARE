@@ -4,21 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neo Share — Обмен Файлами</title>
+    <!-- Подключаем официальные стили виджета загрузки -->
+    <link rel="stylesheet" href="https://ucarecdn.com">
     <style>
         * { box-sizing: border-box; }
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background: #0b0f19; color: #f3f4f6; display: flex; flex-direction: column; min-height: 100vh; }
-        header { text-align: center; margin-bottom: 20px; margin-top: 10px; }
+        header { text-align: center; margin-bottom: 30px; margin-top: 10px; }
         h1 { font-size: 36px; margin: 0 0 8px 0; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #00f2fe; text-shadow: 0 0 10px rgba(0, 242, 254, 0.5); }
         .subtitle { font-size: 14px; color: #9ca3af; margin: 0; }
         
-        .share-container { max-width: 500px; margin: 10px auto; width: 100%; flex-grow: 1; display: flex; flex-direction: column; gap: 15px; }
+        .share-container { max-width: 400px; margin: 20px auto; width: 100%; flex-grow: 1; display: flex; flex-direction: column; gap: 15px; }
+        .tile-panel { background: #1e293b; padding: 35px 20px; border: 1px solid #334155; border-radius: 12px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
         
-        /* Встроенное защищенное окно загрузки */
-        .upload-frame { width: 100%; height: 350px; border: 2px dashed #334155; border-radius: 12px; background: #1e293b; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-        iframe { width: 100%; height: 100%; border: none; }
+        /* Стилизация и перекраска кнопки под неоновый стиль Neo Share */
+        .uploadcare--widget__button_type_open {
+            display: block !important; width: 100% !important; padding: 16px !important; 
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%) !important; 
+            color: #0b0f19 !important; border: none !important; border-radius: 8px !important; 
+            font-weight: bold !important; font-size: 16px !important; text-transform: uppercase !important; 
+            letter-spacing: 1px !important; cursor: pointer !important;
+            box-shadow: 0 4px 12px rgba(0, 242, 254, 0.2) !important; transition: 0.2s !important;
+        }
+        .uploadcare--widget__button_type_open:active { transform: scale(0.98) !important; opacity: 0.9 !important; }
+        
+        /* Изменение цвета текста внутри самого виджета */
+        .uploadcare--widget { color: #ffffff !important; font-weight: 600; }
         
         .back-link { display: inline-block; text-align: center; margin: 15px auto; color: #9ca3af; text-decoration: none; font-size: 14px; }
         .back-link:hover { color: #00f2fe; }
+
         footer { text-align: center; margin-top: auto; padding: 20px 0; border-top: 1px solid #1e293b; font-size: 13px; color: #6b7280; }
         footer b { color: #00f2fe; }
     </style>
@@ -31,10 +45,12 @@
 </header>
 
 <div class="share-container">
-    
-    <!-- Встроенный фрейм стабильного файлообменника, который работает везде -->
-    <div class="upload-frame">
-        <iframe src="https://tmpfiles.org"></iframe>
+    <div class="tile-panel">
+        <div style="font-size: 50px; color: #00f2fe; margin-bottom: 25px;">📁</div>
+        
+        <!-- Официальный безопасный код загрузки. Работает намертво на всех телефонах -->
+        <input type="hidden" role="uploadcare-uploader" id="uploader" data-public-key="demopublickey" data-tabs="file" />
+        
     </div>
     
     <a href="https://github.io" class="back-link">← Вернуться в Neo Market</a>
@@ -44,6 +60,13 @@
     <div>Создано: <b>Aero Hatsune Miku</b></div>
     <div>Все данные защищены © 2026</div>
 </footer>
+
+<!-- Подключаем сам защищенный скрипт обработки файлов -->
+<script src="https://ucarecdn.com"></script>
+<script>
+    // Инициализируем виджет на русском языке
+    UPLOADCARE_LOCALE = "ru";
+</script>
 
 </body>
 </html>
